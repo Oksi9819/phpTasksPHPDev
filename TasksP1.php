@@ -14,15 +14,6 @@ function sumOfDigits($input): int
     } else throw new Exception('Only number should be entered.');
 }
 
-if (isset($_POST['input_number'])) {
-    $input = $_POST['input_number'];
-    try {
-        echo(sumOfDigits($input));
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
-}
-
 //Task2
 function amountOfDigit5($input): int
 {
@@ -128,6 +119,43 @@ function isCardValue(int $card): string
         } else return 'туз';
     } else throw new Exception('Only number should be entered.');
 }
+
+//Task9
+function isChineseYear(int $year): string
+{
+    if ($year > 1923) {
+        $a = $year - 1924;
+        $b = $a % 12;
+        $c = 1 + $b;
+        switch ($c) {
+            case 1:
+                return 'Крыса';
+            case 2:
+                return 'Бык';
+            case 3:
+                return 'Тигр';
+            case 4:
+                return 'Кролик';
+            case 5:
+                return 'Дракон';
+            case 6:
+                return 'Змея';
+            case 7:
+                return 'Лошадь';
+            case 8:
+                return 'Овца';
+            case 9:
+                return 'Обезьяна';
+            case 10:
+                return 'Петух';
+            case 11:
+                return 'Собака';
+            case 12:
+                return 'Свинья';
+        }
+    } else throw new Exception('Year should be not less than 1924.');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -142,17 +170,28 @@ function isCardValue(int $card): string
 <form action="" method="post" id="task1">
     <label>Введите число.</label>
     <label for="input_number"></label><label>
-        <input type="text" name="input_number">
+        <input type="text" name="input_number" required>
     </label>
     <input type="submit" value="Узнать">
 </form>
+<?php
+if (isset($_POST['input_number'])) {
+    ?><span>Ответ:</span><?php
+    $input = $_POST['input_number'];
+    try {
+        echo(sumOfDigits($input));
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+}
+?>
 
 <!-- Task 2 -->
 <h3>Задача 2. Данная форма считает количество цифр 5 в числе.</h3>
 <form action="" method="post" id="task2">
     <label>Введите число.</label>
     <label for="input_number"></label><label>
-        <input type="text" name="input_number2">
+        <input type="text" name="input_number2" required>
     </label>
     <input type="submit" value="Посчитать">
 </form>
@@ -175,7 +214,7 @@ if (isset($_POST['input_number2'])) {
 <!-- Task 4 -->
 <h3>Задача 4. Создать массив, наполнить его случайными значениями (можно использовать функцию rand), найти максимальное
     и минимальное значение массива и поменять их местами.</h3>
-<p>Результат: </p><?php echo '<pre>';
+<h4>Результат: </h4><?php echo '<pre>';
 print_r(minMaxOfArr());
 echo '</pre>'; ?>
 
@@ -184,17 +223,17 @@ echo '</pre>'; ?>
 <form action="" method="post" id="task5">
     <label>Введите ФИО полностью.</label>
     <label for="input_number"></label><label>
-        <input type="text" name="input_full_name">
+        <input type="text" name="input_full_name" required>
     </label>
     <input type="submit" value="Преобразовать">
 </form>
-<p>
+<h4>
     <?php
     if (isset($_POST['input_full_name'])) {
         echo shortenFullName($_POST['input_full_name']);
     }
     ?>
-</p>
+</h4>
 
 <!-- Task 6 -->
 <h3>Задача 6. Программа определяет, какого цвета сейчас горит сигнал светофора. Введенное число означает количество
@@ -202,28 +241,28 @@ echo '</pre>'; ?>
 <form action="" method="post" id="task6">
     <label>Введите число</label>
     <label for="input_number"></label><label>
-        <input type="number" name="input_time">
+        <input type="number" name="input_time" required>
     </label>
     <input type="submit" value="Узнать сигнал светофора">
 </form>
-<p>
+<h4>
     <?php
     if (isset($_POST['input_time'])) {
         echo isTrafficColor($_POST['input_time']);
     }
     ?>
-</p>
+</h4>
 
 <!-- Task 7 -->
 <h3>Задача 7. Программа определяет, является ли введенный год вискосным.</h3>
 <form action="" method="post" id="task7">
     <label>Введите число</label>
     <label for="input_number"></label><label>
-        <input type="number" name="input_year">
+        <input type="number" name="input_year" required>
     </label>
     <input type="submit" value="Узнать год">
 </form>
-<p>
+<h4>
     <?php
     if (isset($_POST['input_year'])) {
         try {
@@ -237,18 +276,18 @@ echo '</pre>'; ?>
         }
     }
     ?>
-</p>
+</h4>
 
 <!-- Task 8 -->
 <h3>Задача 8. Программа выводит достоинство карты по заданному номеру, который вводит пользователь.</h3>
 <form action="" method="post" id="task8">
     <label>Введите число</label>
     <label for="input_number"></label><label>
-        <input type="number" name="input_card">
+        <input type="number" name="input_card" required>
     </label>
     <input type="submit" value="Узнать достоинство карты">
 </form>
-<p>
+<h4>
     <?php
     if (isset($_POST['input_card'])) {
         try {
@@ -258,6 +297,27 @@ echo '</pre>'; ?>
         }
     }
     ?>
-</p>
+</h4>
+
+<!-- Task 9 -->
+<h3>Задача 9. Программа определяет, каким по китайскому календарю является год.</h3>
+<form action="" method="post" id="task9">
+    <label>Введите год:</label>
+    <label for="input_number"></label><label>
+        <input type="number" name="input_gregorian_year" required>
+    </label>
+    <input type="submit" value="Узнать год по китайскому календарю">
+</form>
+<h4>
+    <?php
+    if (isset($_POST['input_gregorian_year'])) {
+        try {
+            echo isChineseYear($_POST['input_gregorian_year']);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    ?>
+</h4>
 </body>
 </html>
