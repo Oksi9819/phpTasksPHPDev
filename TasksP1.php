@@ -88,7 +88,7 @@ function isTrafficColor(int $time): string
     }
 }
 
-//Task7
+//Task8
 function isCardValue(int $card): string
 {
     if ((int)($card)) {
@@ -199,8 +199,8 @@ echo '</pre>'; ?>
     ?>
 </p>
 
-<!-- Task 7 -->
-<h3>Задача 7. Программа выводит достоинство карты по заданному номеру, который вводит пользователь.</h3>
+<!-- Task 8 -->
+<h3>Задача 8. Программа выводит достоинство карты по заданному номеру, который вводит пользователь.</h3>
 <form action="" method="post" id="task7">
     <label>Введите число</label>
     <label for="input_number"></label><label>
