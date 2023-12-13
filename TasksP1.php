@@ -74,6 +74,20 @@ function shortenFullName(string $fullName): string
     $fullNameArr[2] = mb_substr($fullNameArr[2], 0, 1) . '.';
     return implode(' ', $fullNameArr);
 }
+
+//Task6
+function isTrafficColor(int $time): string
+{
+    $a = $time % 5;
+    if ($a == 0) {
+        return 'red';
+    } elseif ($a > 3) {
+        return 'red';
+    } else {
+        return 'green';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -134,12 +148,30 @@ echo '</pre>'; ?>
     </label>
     <input type="submit" value="Преобразовать">
 </form>
-<p>Результат:
-<?php
-if (isset($_POST['input_full_name'])) {
-    echo shortenFullName($_POST['input_full_name']);
-}
-?>
+<p>
+    <?php
+    if (isset($_POST['input_full_name'])) {
+        echo shortenFullName($_POST['input_full_name']);
+    }
+    ?>
+</p>
+
+<!-- Task 6 -->
+<h3>Задача 6. Программа определяет, какого цвета сейчас горит сигнал светофора. Введенное число означает количество
+    минут, прошедших с начала часа.</h3>
+<form action="" method="post" id="task6">
+    <label>Введите число</label>
+    <label for="input_number"></label><label>
+        <input type="number" name="input_time">
+    </label>
+    <input type="submit" value="Узнать сигнал светофора">
+</form>
+<p>
+    <?php
+    if (isset($_POST['input_time'])) {
+        echo isTrafficColor($_POST['input_time']);
+    }
+    ?>
 </p>
 </body>
 </html>
