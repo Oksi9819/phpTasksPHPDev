@@ -88,6 +88,31 @@ function isTrafficColor(int $time): string
     }
 }
 
+//Task7
+function isCardValue(int $card): string
+{
+    if ((int)($card)) {
+        if ($card < 6 || $card > 14) {
+            throw new Exception('The number must be more than 5 and less than 15, since a reduced deck of cards (36 pcs.) is being considered.');
+        } elseif ($card === 6) {
+            return 'шестерка';
+        } elseif ($card === 7) {
+            return 'семерка';
+        } elseif ($card === 8) {
+            return 'восьмерка';
+        } elseif ($card === 9) {
+            return 'девятка';
+        } elseif ($card === 10) {
+            return 'десятка';
+        } elseif ($card === 11) {
+            return 'валет';
+        } elseif ($card === 12) {
+            return 'дама';
+        } elseif ($card === 13) {
+            return 'король';
+        } else return 'туз';
+    } else throw new Exception('Only number should be entered.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +165,7 @@ print_r(minMaxOfArr());
 echo '</pre>'; ?>
 
 <!-- Task 5 -->
-<h3>Задача 5. Cоздание сокращенного варианта ФИО.</h3>
+<h3>Задача 5. Cоздать сокращенный вариант ФИО.</h3>
 <form action="" method="post" id="task5">
     <label>Введите ФИО полностью.</label>
     <label for="input_number"></label><label>
@@ -170,6 +195,27 @@ echo '</pre>'; ?>
     <?php
     if (isset($_POST['input_time'])) {
         echo isTrafficColor($_POST['input_time']);
+    }
+    ?>
+</p>
+
+<!-- Task 7 -->
+<h3>Задача 7. Программа выводит достоинство карты по заданному номеру, который вводит пользователь.</h3>
+<form action="" method="post" id="task7">
+    <label>Введите число</label>
+    <label for="input_number"></label><label>
+        <input type="number" name="input_card">
+    </label>
+    <input type="submit" value="Узнать достоинство карты">
+</form>
+<p>
+    <?php
+    if (isset($_POST['input_card'])) {
+        try {
+            echo isCardValue($_POST['input_card']);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
     ?>
 </p>
