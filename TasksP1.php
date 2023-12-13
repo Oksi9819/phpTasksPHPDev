@@ -37,6 +37,18 @@ function amountOfDigit5 ($input): int
         return $amount;
     } else throw new Exception('Only number should be entered.');
 }
+
+//Task3
+function divisibleBy5 (): int
+{
+    $sumOfDivisibleBy5 = 0;
+    for($i = 20; $i < 46; $i ++) {
+        if (fmod($i, 5) == 0) {
+            $sumOfDivisibleBy5 +=$i;
+        }
+    }
+    return $sumOfDivisibleBy5;
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,5 +88,8 @@ if (isset($_POST['input_number2'])) {
     }
 }
 ?>
+
+<!-- Task 3 -->
+<h3>Задача 3. Ответ: Сумма чисел, которые делятся на 5 в числовом диапазоне 20-45 включительно, равна <?php echo divisibleBy5(); ?>.</h3>
 </body>
 </html>
