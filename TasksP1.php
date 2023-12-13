@@ -49,6 +49,22 @@ function divisibleBy5 (): int
     }
     return $sumOfDivisibleBy5;
 }
+
+//Task4
+function minMaxOfArr (): array
+{
+    $randArr = array();
+    for ($i = 0; $i < 10; $i ++) {
+        $randArr[] = rand(0, 1000);
+    }
+    echo '<pre>';
+    print_r($randArr);
+    echo '</pre>';
+    $keyMin = array_search(min($randArr), $randArr);
+    $keyMax = array_search(max($randArr), $randArr);
+    list($randArr[$keyMax], $randArr[$keyMin]) = array($randArr[$keyMin],$randArr[$keyMax]);
+    return $randArr;
+}
 ?>
 
 <!DOCTYPE html>
@@ -91,5 +107,9 @@ if (isset($_POST['input_number2'])) {
 
 <!-- Task 3 -->
 <h3>Задача 3. Ответ: Сумма чисел, которые делятся на 5 в числовом диапазоне 20-45 включительно, равна <?php echo divisibleBy5(); ?>.</h3>
+
+<!-- Task 4 -->
+<h3>Задача 4. Создать массив, наполнить его случайными значениями (можно использовать функцию rand), найти максимальное и минимальное значение массива и поменять их местами.</h3>
+<p>Результат: </p><?php echo '<pre>'; print_r(minMaxOfArr()); echo '</pre>';?>
 </body>
 </html>
