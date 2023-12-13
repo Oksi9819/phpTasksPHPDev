@@ -88,6 +88,21 @@ function isTrafficColor(int $time): string
     }
 }
 
+//Task7
+function isLeapYear(int $year): bool
+{
+    if ($year < 1 || $year > 9999) {
+        throw new Exception('The number must be from 1 to 9999');
+    } elseif ($year % 4 == 0) {
+        if ($year % 100 == 0) {
+            if ($year % 400 == 0) {
+                return true;
+            } else return false;
+        }
+        return true;
+    } else return false;
+}
+
 //Task8
 function isCardValue(int $card): string
 {
@@ -199,9 +214,34 @@ echo '</pre>'; ?>
     ?>
 </p>
 
+<!-- Task 7 -->
+<h3>Задача 7. Программа определяет, является ли введенный год вискосным.</h3>
+<form action="" method="post" id="task7">
+    <label>Введите число</label>
+    <label for="input_number"></label><label>
+        <input type="number" name="input_year">
+    </label>
+    <input type="submit" value="Узнать год">
+</form>
+<p>
+    <?php
+    if (isset($_POST['input_year'])) {
+        try {
+            if (isLeapYear($_POST['input_year'])) {
+                echo 'Год високосный.';
+            } else {
+                echo 'Год не високосный.';
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    ?>
+</p>
+
 <!-- Task 8 -->
 <h3>Задача 8. Программа выводит достоинство карты по заданному номеру, который вводит пользователь.</h3>
-<form action="" method="post" id="task7">
+<form action="" method="post" id="task8">
     <label>Введите число</label>
     <label for="input_number"></label><label>
         <input type="number" name="input_card">
