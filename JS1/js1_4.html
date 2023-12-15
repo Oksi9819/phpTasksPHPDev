@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="js1.css">
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <label><input type="text" id="input_text" placeholder="Начните вводить текст..."></label>
+    <div id="counter"></div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        let text = $('#input_text');
+        let max_length = 10;
+        text.on('input', function() {
+            let length = $(this).val().length;
+            let remaining_chars = max_length - length;
+            let result_text;
+            if (remaining_chars < 0) {
+                result_text = 'Лимит превышен на ' + Math.abs(remaining_chars) + ' символов.';
+            } else result_text = 'Осталось ввести ' + remaining_chars + ' символов.';
+            $('#counter').text(result_text);
+        });
+    });
+</script>
+</body>
+</html>
