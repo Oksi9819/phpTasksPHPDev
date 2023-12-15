@@ -1,9 +1,6 @@
 <?php
 
 
-namespace Form;
-
-
 class Form
 {
     private array $params = [];
@@ -16,8 +13,8 @@ class Form
     private function setAttributes(array $attributes): string
     {
         $result = '';
-        foreach ($attributes as $attribute) {
-            $result .= key($attributes) . $attribute;
+        foreach ($attributes as $key=>$value) {
+            $result .= $key . '="' . $value . '" ';
         }
         return $result;
     }
@@ -25,21 +22,19 @@ class Form
     public function input(array $attributes): string
     {
         $text = $this->setAttributes($attributes);
-        return '<input ' . $text . '>';
+        return '<input ' . $text . '><br/>';
     }
 
     public function submit(array $attributes): string
     {
-        array_unshift($attributes, ['type' => 'submit']);
-        $text = $this->setAttributes($attributes);
-        return '<input ' . $text . '>';
+        $text = $this->setAttributes(array_merge(['type' => 'submit'], $attributes));
+        return '<input ' . $text . '><br/>';
     }
 
     public function password(array $attributes): string
     {
-        array_unshift($attributes, ['type' => 'password']);
-        $text = $this->setAttributes($attributes);
-        return '<input ' . $text . '>';
+        $text = $this->setAttributes(array_merge(['type' => 'password'], $attributes));
+        return '<input ' . $text . '><br/>';
     }
 
     public function textarea(array $attributes): string
@@ -48,17 +43,17 @@ class Form
             $value = $attributes['value'];
             unset($attributes['value']);
             $text = $this->setAttributes($attributes);
-            return '<textarea ' . $text . '>' . $value . '</textarea>';
+            return '<textarea ' . $text . '>' . $value . '</textarea><br/>';
         } else {
             $text = $this->setAttributes($attributes);
-            return '<textarea ' . $text . '</textarea>';
+            return '<textarea ' . $text . '></textarea><br/>';
         }
     }
 
     public function open(array $attributes): string
     {
         $text = $this->setAttributes($attributes);
-        return '<form ' . $text . '>';
+        return '<form ' . $text . '><br/>';
     }
 
     public function close(): string
