@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<label>
+    <input type="checkbox" name="checkbox" value="1">
+    1
+</label>
+<br>
+<label>
+    <input type="checkbox" name="checkbox" value="2">
+    2
+</label>
+<br>
+<label>
+    <input type="checkbox" name="checkbox" value="3">
+    3
+</label>
+<br>
+<label>
+    <input type="checkbox" name="checkbox" value="4" id="checkbox4">
+    4
+</label>
+<script type="text/javascript">
+    $('input[type = checkbox]').prop('checked', false);
+    $('#checkbox4').prop('disabled', true);
+</script>
+</body>
+</html>
