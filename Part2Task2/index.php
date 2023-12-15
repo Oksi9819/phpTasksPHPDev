@@ -1,6 +1,6 @@
 <?php
 
-use \Part2Task2\Form;
+use Form\Form;
 
 echo (new Form())->open(['action'=>'index.php', 'method'=>'POST']);
 echo (new Form())->input(['type'=>'text', 'placeholder'=>'Ваше имя', 'name'=>'name']);

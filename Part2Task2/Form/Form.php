@@ -1,19 +1,19 @@
 <?php
 
 
-namespace Part2Task2;
+namespace Form;
 
 
 class Form
 {
-    private array $params=[];
+    private array $params = [];
 
     public function __construct()
     {
-        $this->params = $_REQUEST;
+        $this->params = [];
     }
 
-    private function setAttributes(array $attributes) : string
+    private function setAttributes(array $attributes): string
     {
         $result = '';
         foreach ($attributes as $attribute) {
@@ -22,46 +22,46 @@ class Form
         return $result;
     }
 
-    public function input(array $attributes) : string
+    public function input(array $attributes): string
     {
         $text = $this->setAttributes($attributes);
         return '<input ' . $text . '>';
     }
 
-    public function submit(array $attributes) : string
+    public function submit(array $attributes): string
     {
         array_unshift($attributes, ['type' => 'submit']);
         $text = $this->setAttributes($attributes);
         return '<input ' . $text . '>';
     }
 
-    public function password(array $attributes) : string
+    public function password(array $attributes): string
     {
         array_unshift($attributes, ['type' => 'password']);
         $text = $this->setAttributes($attributes);
         return '<input ' . $text . '>';
     }
 
-    public function textarea(array $attributes) : string
+    public function textarea(array $attributes): string
     {
         if (isset($attributes['value'])) {
             $value = $attributes['value'];
             unset($attributes['value']);
             $text = $this->setAttributes($attributes);
-            return '<textarea ' . $text . '>' . $value. '</textarea>';
+            return '<textarea ' . $text . '>' . $value . '</textarea>';
         } else {
             $text = $this->setAttributes($attributes);
             return '<textarea ' . $text . '</textarea>';
         }
     }
 
-    public function open(array $attributes) : string
+    public function open(array $attributes): string
     {
         $text = $this->setAttributes($attributes);
         return '<form ' . $text . '>';
     }
 
-    public function close() : string
+    public function close(): string
     {
         return '</form>';
     }
