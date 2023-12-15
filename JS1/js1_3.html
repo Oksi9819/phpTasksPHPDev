@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="js1.css">
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <label>Введите число</label>
+    <label for="input_width"></label>
+    <input type="number" id="input_width" placeholder="Ширина">
+    <label for="input_height"></label>
+    <input type="number" id="input_height" placeholder="Высота">
+<div id="result13"></div>
+<script type="text/javascript">
+   $(document).ready(function() {
+       $('#input_width').on('input', function() {
+           let width = $(this).val();
+
+           $('#result13').css('width', width + 'px');
+       });
+
+       $('#input_height').on('input', function() {
+           let height = $(this).val();
+
+           $('#result13').css('height', height + 'px');
+       });
+   });
+</script>
+</body>
+</html>
