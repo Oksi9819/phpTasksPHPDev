@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<p id="text_to_color">Какой-то любой текст. Например этот.</p>
+<p id="result"></p>
+<script type="text/javascript">
+    $(document).ready(function() {
+        function getColor(colors) {
+            return colors[Math.floor(Math.random()*colors.length)];
+        }
+
+        function colorText(idEl, colors) {
+            let el = $('#' + idEl +'');
+            let text = el.text();
+            let coloredText = '';
+            let textColors = [];
+            for (let i = 0; i < text.length; i++) {
+                let color = getColor(colors);
+
+                if (i > 0 && textColors[i] === color) {
+                    color = getColor(colors);
+                }
+
+                textColors[i] = color;
+                coloredText += '<span style="color: ' + textColors[i] + '">' + text[i] + '</span>';
+            }
+            el.html(coloredText);
+        }
+
+        let colorArr = [
+            'Lavender',
+            'DeepPink',
+            'SlateBlue',
+            'Indigo',
+            'LightCoral',
+            'MediumAquaMarine',
+            'CadetBlue',
+            'CornflowerBlue',
+            'MidnightBlue',
+            'DarkSlateGray',
+            'RosyBrown'
+        ];
+
+        colorText('text_to_color', colorArr);
+    });
+</script>
+</body>
+</html>
