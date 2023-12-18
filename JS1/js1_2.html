@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<a href="js1_1.html">js1_1.html</a><br/>
+<a href="https://www.ekzotika.com/">Сторонний сайт1</a><br/>
+<a href="js1_3.html">js1_3.html</a><br/>
+<a href="https://astro-online.ru/">Сторонний сайт2</a><br/>
+<a href="js1_4.html">js1-4.html</a><br/>
+<a href="https://github.com/Oksi9819/phpTasksPHPDev/tree/main/JS1">Сторонний сайт3</a><br/>
+<script type="text/javascript">
+    $(document).ready(function() {
+        let refs = $('a');
+
+        for(let i=0; i<refs.length; i++) {
+            if (refs[i].hostname !== window.location.hostname) {
+                $(refs[i]).attr('target', '_blank');
+            }
+        }
+    });
+</script>
+</body>
+</html>
