@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="js1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script src="jquery.js"></script>-->
+</head>
+<body>
+<label>
+    <input type="number" id="marksNum" required>
+</label>
+<input type="button" id="load_marks" value="Загрузить марки автомобилей">
+<ul id="marksList"></ul>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#load_marks').on('click', function() {
+            let number = $('#marksNum').val();
+            if (parseInt(number)) {
+                if (number > 0) {
+                    $.ajax({
+                        url: 'CarBrand.php',
+                        method: 'get',
+                        dataType: 'json',
+                        data: {num: number},
+                        success: function(response) {
+                            if (response.error) {
+                                $('#marksList').html('<li>' + response.error + '</li>');
+                            } else {
+                                let listMarks = '';
+                                for (let i = 0; i < response.length; i++) {
+                                    listMarks += '<li>' + response[i] + '</li>';
+                                }
+                                $('#marksList').html(listMarks);
+                            }
+                        },
+                        error: function() {
+                            $('#marksList').html('<li>Произошла ошибка. Данные не загрузились.</li>');
+                        }
+                    });
+                } else $('#marksList').html('<li>Введенное число должно быть больше 0.</li>');
+            } else $('#marksList').html('<li>Необходимо ввести число.</li>');
+        });
+    });
+</script>
+</body>
+</html>
